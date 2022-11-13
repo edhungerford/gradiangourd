@@ -12,10 +12,10 @@ module.exports = {
     async execute(interaction) {
         const title = interaction.options.getString('title') ?? "latest";
         const story = await axios.get('https://gradia.edsite.black/api/story');
-        function postRecap(storyObject){
+        async function postRecap(storyObject){
             const messages = storyObject.story.split("\n");
-            interaction.editReply("**" + storyObject.title + "**");
-            messages.forEach(message => {
+            await interaction.editReply("**" + storyObject.title + "**");
+            await messages.forEach( message => {
                 interaction.followUp(message);
             })
             interaction.followUp("> *" + storyObject.stinger + "*")
@@ -27,7 +27,7 @@ module.exports = {
             if(results.length > 0){
                 postRecap(results[0])
             } else {
-                interaction.editReply("Couldn't find a session with that name.")
+                await interaction.editReply("Couldn't find a session with that name.")
             }
         } else {
             postRecap(story.data[story.data.length - 1])
