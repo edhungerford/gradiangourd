@@ -18,7 +18,9 @@ module.exports = {
             await messages.forEach( message => {
                 interaction.followUp(message);
             })
-            interaction.followUp("> *" + storyObject.stinger + "*")
+            if(storyObject.stinger !== ""){
+                interaction.followUp("> *" + storyObject.stinger + "*")
+            }
         }
         if(title !== "latest"){
             var results = story.data.filter(session => {
