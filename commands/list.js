@@ -18,7 +18,6 @@ module.exports = {
     ),
     async execute(interaction){
         const type = interaction.options.getString('type');
-        console.log(type);
         var list = await axios.get('https://gradia.edsite.black/api/' + type);
         let listString = "";
         if(interaction.options.getString('type') === "characters"){

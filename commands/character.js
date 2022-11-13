@@ -16,7 +16,6 @@ module.exports = {
 			return character.name.toUpperCase().startsWith(name.toUpperCase());
 		})
 		if(results.length > 0){
-			console.log(results);
 			const card = {
 				color: 0xca4a00,
 				title: results[0].name,
