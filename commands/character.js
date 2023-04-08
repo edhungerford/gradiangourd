@@ -10,7 +10,7 @@ module.exports = {
 			.setDescription('The name of the character')
 			.setRequired(true)),
 	async execute(interaction) {
-		const char = await axios.get('https://gradia.edsite.black/api/characters');
+		const char = await axios.get('https://gradia.edsite.black/api/gradia/characters');
 		const name = interaction.options.getString('name');
 		var results = char.data.filter(character => {
 			return character.name.toUpperCase().startsWith(name.toUpperCase());

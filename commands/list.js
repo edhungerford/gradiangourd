@@ -18,7 +18,7 @@ module.exports = {
     ),
     async execute(interaction){
         const type = interaction.options.getString('type');
-        var list = await axios.get('https://gradia.edsite.black/api/' + type);
+        var list = await axios.get('https://gradia.edsite.black/api/gradia/' + type);
         let listString = "";
         if(interaction.options.getString('type') === "characters"){
             let affiliations = Array.from(new Set(list.data.map(character => character.affiliation)))

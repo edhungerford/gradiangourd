@@ -11,7 +11,7 @@ module.exports = {
     ),
     async execute(interaction) {
         const title = interaction.options.getString('title') ?? "latest";
-        const story = await axios.get('https://gradia.edsite.black/api/story');
+        const story = await axios.get('https://gradia.edsite.black/api/gradia/story');
         async function postRecap(storyObject){
             const messages = storyObject.story.split("\n");
             await interaction.editReply("**" + storyObject.title + "**");
