@@ -15,10 +15,21 @@ module.exports = {
         {
             name: 'Sessions', value: 'story'
         })
+    ).addStringOption(option =>
+        option.setName('game')
+        .setDescription('The game to fetch information from.')
+        .setRequired(true)
+        .addChoices({
+            name: 'Tails of Gradia', value: 'gradia'
+        },
+        {
+            name: 'South of the Snaplands', value: 'snaplands'
+        }),
     ),
     async execute(interaction){
         const type = interaction.options.getString('type');
-        var list = await axios.get('https://gradia.edsite.black/api/gradia/' + type);
+        const game = interaction.options.getString('game');
+        var list = await axios.get('https://gradia.edsite.black/api/' + game + '/' + type);
         let listString = "";
         if(interaction.options.getString('type') === "characters"){
             let affiliations = Array.from(new Set(list.data.map(character => character.affiliation)))

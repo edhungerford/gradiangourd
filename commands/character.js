@@ -8,10 +8,20 @@ module.exports = {
 		.addStringOption(option => 
 			option.setName('name')
 			.setDescription('The name of the character')
-			.setRequired(true)),
+			.setRequired(true))
+		.addStringOption(option =>
+			option.setName('game')
+			.setDescription("The TTRPG game you're querying")
+			.setRequired(true)
+			.addChoices(
+					{ name: 'Tails of Gradia', value: 'gradia' },
+					{ name: 'South of Snaplands', value: 'snaplands' }
+				)
+			),			
 	async execute(interaction) {
-		const char = await axios.get('https://gradia.edsite.black/api/gradia/characters');
 		const name = interaction.options.getString('name');
+		const game = interaction.options.getString('game');
+		const char = await axios.get(`https://gradia.edsite.black/api/${game}/characters`);
 		var results = char.data.filter(character => {
 			return character.name.toUpperCase().startsWith(name.toUpperCase());
 		})
