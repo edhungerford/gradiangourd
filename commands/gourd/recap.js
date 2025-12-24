@@ -3,12 +3,6 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('recap')
-    .setDescription('Finds the most recent recap (default), or a different one by name.')
-    .addStringOption(option =>
-        option.setName('title')
-        .setDescription('The session title')
-    )
     .addStringOption(option =>
         option.setName('game')
         .setDescription('The game to fetch information from.')
@@ -19,6 +13,12 @@ module.exports = {
         {
             name: 'South of the Snaplands', value: 'snaplands'
         })
+    )
+    .setName('recap')
+    .setDescription('Finds the most recent recap (default), or a different one by name.')
+    .addStringOption(option =>
+        option.setName('title')
+        .setDescription('The session title')
     ),
     async execute(interaction) {
         const title = interaction.options.getString('title') ?? "latest";
