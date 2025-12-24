@@ -15,7 +15,8 @@ module.exports = {
 			.setRequired(true)
 			.addChoices(
 					{ name: 'Tails of Gradia', value: 'gradia' },
-					{ name: 'South of Snaplands', value: 'snaplands' }
+					{ name: 'South of Snaplands', value: 'snaplands' },
+					{ name: 'Scalesagas', value: 'scalesagas'}
 				)
 			),			
 	async execute(interaction) {

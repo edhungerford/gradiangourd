@@ -7,12 +7,11 @@ module.exports = {
         option.setName('game')
         .setDescription('The game to fetch information from.')
         .setRequired(true)
-        .addChoices({
-            name: 'Tails of Gradia', value: 'gradia'
-        },
-        {
-            name: 'South of the Snaplands', value: 'snaplands'
-        })
+        .addChoices(
+            { name: 'Tails of Gradia', value: 'gradia' },
+			{ name: 'South of Snaplands', value: 'snaplands' },
+            { name: 'Scalesagas', value: 'scalesagas'}
+        )
     )
     .setName('recap')
     .setDescription('Finds the most recent recap (default), or a different one by name.')

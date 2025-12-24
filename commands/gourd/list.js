@@ -20,12 +20,11 @@ module.exports = {
         option.setName('game')
         .setDescription('The game to fetch information from.')
         .setRequired(true)
-        .addChoices({
-            name: 'Tails of Gradia', value: 'gradia'
-        },
-        {
-            name: 'South of the Snaplands', value: 'snaplands'
-        }),
+        .addChoices(
+            { name: 'Tails of Gradia', value: 'gradia' },
+			{ name: 'South of Snaplands', value: 'snaplands' },
+			{ name: 'Scalesagas', value: 'scalesagas'}
+        ),
     ),
     async execute(interaction){
         const type = interaction.options.getString('type');

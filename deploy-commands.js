@@ -5,6 +5,7 @@ const path = require('node:path');
 const token = process.env['DISCORD_TOKEN'];
 const clientId = process.env['CLIENT_ID'];
 const guildId = process.env['SERVER_ID'];
+const rileyId = process.env['RILEY_ID'];
 
 console.log(token);
 
@@ -40,6 +41,11 @@ const rest = new REST({ version: '10' }).setToken(token);
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
 			Routes.applicationGuildCommands(clientId, guildId),
+			{ body: commands },
+		);
+
+		const scaleData = await rest.put(
+			Routes.applicationGuildCommands(clientId, rileyId),
 			{ body: commands },
 		);
 
