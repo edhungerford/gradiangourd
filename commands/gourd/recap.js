@@ -8,10 +8,22 @@ module.exports = {
     .addStringOption(option =>
         option.setName('title')
         .setDescription('The session title')
+    )
+    .addStringOption(option =>
+        option.setName('game')
+        .setDescription('The game to fetch information from.')
+        .setRequired(true)
+        .addChoices({
+            name: 'Tails of Gradia', value: 'gradia'
+        },
+        {
+            name: 'South of the Snaplands', value: 'snaplands'
+        })
     ),
     async execute(interaction) {
         const title = interaction.options.getString('title') ?? "latest";
-        const story = await axios.get('https://gradia.edsite.black/api/gradia/story');
+        const game = interaction.options.getString('game');
+        const story = await axios.get('https://gradia.edsite.black/api/' + game + '/story');
         async function postRecap(storyObject){
             const messages = storyObject.story.split("\n");
             await interaction.editReply("**" + storyObject.title + "**");

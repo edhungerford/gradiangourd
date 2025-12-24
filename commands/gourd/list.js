@@ -15,7 +15,8 @@ module.exports = {
         {
             name: 'Sessions', value: 'story'
         })
-    ).addStringOption(option =>
+    )
+    .addStringOption(option =>
         option.setName('game')
         .setDescription('The game to fetch information from.')
         .setRequired(true)
