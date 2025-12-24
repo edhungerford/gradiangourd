@@ -10,7 +10,8 @@ module.exports = {
         .addChoices(
             { name: 'Tails of Gradia', value: 'gradia' },
 			{ name: 'South of Snaplands', value: 'snaplands' },
-            { name: 'Scalesagas', value: 'scalesagas'}
+            { name: 'Scalesagas', value: 'scalesagas'},
+			{ name: "Blue Skies, Black Smoke", value: 'bsbs'}
         )
     )
     .setName('recap')
