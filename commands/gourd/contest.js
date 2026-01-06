@@ -61,7 +61,7 @@ module.exports = {
             let now = new Date();
             const poll = {
                 question: {
-                    text: "what happen"
+                    text: question
                 },
                 answers: [{
                     answer_id: 1,
