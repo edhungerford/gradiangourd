@@ -65,14 +65,11 @@ module.exports = {
                 },
                 answers: [{
                     answer_id: 1,
-                    text: results[0].title
-                    
+                    text: results[0].title 
                 },
                 {
                     answer_id: 2,
-                    
-                        text: results[1].title
-                    
+                    text: results[1].title
                 }],
                 duration: 3
                 }
