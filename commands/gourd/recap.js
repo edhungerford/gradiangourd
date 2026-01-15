@@ -25,14 +25,8 @@ module.exports = {
         const game = interaction.options.getString('game');
         const story = await axios.get('https://gradia.edsite.black/api/' + game + '/story');
         async function postRecap(storyObject){
-            const messages = storyObject.story.split("\n");
-            await interaction.editReply("**" + storyObject.title + "**");
-            await messages.forEach( message => {
-                interaction.followUp(message);
-            })
-            if(storyObject.stinger !== ""){
-                interaction.followUp("> *" + storyObject.stinger + "*")
-            }
+            const message = storyObject.story.replaceAll("\n", "\n\n");
+            await interaction.editReply(`# ${storyObject.title}\n\n${message}\n\n> *${storyObject.stinger}*`);
         }
         if(title !== "latest"){
             var results = story.data.filter(session => {
