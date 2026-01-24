@@ -35,10 +35,10 @@ module.exports = {
 				description: results[0].description,
 				fields: [{name: 'Pronouns', value: results[0].pronouns}]
 			}
-			if(results.length > 1) card.footer = {text: "I found more than one character that matched your search parameters. If this isn't the character you were looking for, try being a little more specific!"};
-			interaction.editReply({embeds: [card]});
+			await interaction.editReply({embeds: [card]});
+			if(results.length > 1) await interaction.followUp({content: "I found more than one character that matched your search parameters. If this isn't the character you were looking for, try being a little more specific!", ephemeral: true});
 		} else {
-			interaction.editReply("Couldn't find a character with that name.");
+			await interaction.editReply("Couldn't find a character with that name.");
 		}
 	},
 };

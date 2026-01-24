@@ -26,7 +26,27 @@ module.exports = {
         const story = await axios.get('https://gradia.edsite.black/api/' + game + '/story');
         async function postRecap(storyObject){
             const message = storyObject.story.replaceAll("\n", "\n\n");
-            await interaction.editReply(`# ${storyObject.title}\n\n${message}\n\n> *${storyObject.stinger}*`);
+            if(message.length > 2000){
+                async function chunkify(chunks){
+                    let numChunks = Math.floor(chunks.join("").length / 2000) + 1;  // Haha. numChunks.
+                    let chunkSize = Math.floor(chunks.length/numChunks);
+                    let newChunks = [];
+                    if(numChunks > 1){
+                        for(var i=0;i<numChunks -1;i++){
+                            newChunks[i] = chunks.splice(0,chunkSize).join("\n\n")
+                        }
+                        newChunks.push(chunks.join("\n\n"))
+                    }
+                    finalChunks = [];
+                    newChunks.forEach(chunk => chunk.length > 2000? finalChunks.push(...chunkify(chunk)) : finalChunks.push(chunk));
+                    await interaction.editReply(`# ${storyObject.title}\n\n${finalChunks.shift()}`);
+                    finalChunks.forEach(async chunk => await interaction.followUp({ content: `${chunk}\n\n> *${storyObject.stinger || ""}*`}));
+                }
+                let splitMessage = message.split("\n\n");
+                chunkify(splitMessage);
+            } else {
+                await interaction.editReply(`# ${storyObject.title}\n\n${message}\n\n> *${storyObject.stinger}*`);
+            }
         }
         if(title !== "latest"){
             var results = story.data.filter(session => {
